@@ -31,10 +31,25 @@ function getDogsAsTable($db){
     } catch (PDOException $e){
         die("There was a problem retrieving the dogs.");
     }
+
     /*if(count($results) ) {
         foreach ($results as $dog) {
             print_r($dog);
         }
     }
     */
+}
+function addDog($db, $name, $gender, $fixed){
+
+    try{
+        $sql = $db->prepare("INSERT INTO animals VALUES (null, :name, :gender, :fixed)");
+        $sql->bindparam(':name', $name);
+        $sql->bindparam(':gender', $gender);
+        $sql->bindparam(':fixed', $fixed);
+        $sql->execute();
+        return $sql ->rowCount();
+    }catch(PDOException $e)
+    {
+        die("There was a problem giving birth to the puppy.");
+    }
 }
