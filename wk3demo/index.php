@@ -11,11 +11,20 @@ $gender = filter_input(INPUT_POST, 'gender', FILTER_VALIDATE_REGEXP,
         "options" => array("regexp"=> '/^[MF]$/')
     )
     )?? "";
+
+//$id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
 switch($action)
 {
     case "Add":
         //Validation here
         addDog($db, $name, $gender, $fixed);
+        break;
+    case "Delete":
+        break;
+    case "Edit":
+        $button = "Update";
+        $dog = getDog($db, $id);
+    case "Update":
         break;
 }
 echo getDogsAsTable($db);

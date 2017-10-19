@@ -7,6 +7,7 @@
  */
 ?>
 
+
 <form method="post" action="#">
     Name: <input type="text" name="name" /> <br />
     Gender: M<input type="radio" name="gender" value="M" />
