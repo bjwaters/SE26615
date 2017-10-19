@@ -5,6 +5,7 @@
  * Date: 10/18/2017
  * Time: 2:23 PM
  */
+//Adding the required connections elements
 require_once("assets/actorConn.php");
 require_once("assets/actors.php");
 include_once ("assets/header.php");
@@ -16,6 +17,7 @@ $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_STRING) ?? "";
 $dob = filter_input(INPUT_POST, 'date', FILTER_SANITIZE_STRING) ?? "";
 $height = filter_input(INPUT_POST, 'height', FILTER_SANITIZE_STRING)?? "";
 
+//This is the case for adding an actor
 switch($action)
 {
     case "Save":
@@ -25,6 +27,7 @@ switch($action)
         break;
 }
 
+//Adds the form and footer
 include_once("assets/actorForm.php");
 include_once ("assets/footer.php");
 ?>

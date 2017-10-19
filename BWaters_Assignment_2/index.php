@@ -1,10 +1,11 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: 001427082
- * Date: 10/16/2017
- * Time: 2:20 PM
+Benjamin Waters
+ * SE266
+ * Assignment2
  */
+
+//This is the index page
 include_once ("assets/header.php");
 include_once ("assets/footer.php");
 ?>

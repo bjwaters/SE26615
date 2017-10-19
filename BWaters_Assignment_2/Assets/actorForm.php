@@ -6,7 +6,7 @@
  * Time: 2:21 PM
  */
 ?>
-
+ <!-- The form for adding an actor-->
 <form method="post" action="#">
     First Name: <input type="text" name="firstname" /> <br />
     Last Name: <input type="text" name="lastname" /> <br />
