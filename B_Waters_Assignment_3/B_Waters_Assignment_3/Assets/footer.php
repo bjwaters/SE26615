@@ -6,8 +6,8 @@
  * Time: 11:51 AM
  */
 ?>
-
-
+<br>
+</body>
 <footer>Copyright &copy; 2017 Ben Waters.</footer>
 </body>
 </html>
