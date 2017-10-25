@@ -1,13 +1,10 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Littleuser314
- * Date: 10/24/2017
- * Time: 7:33 PM
+ *Intro on index page
  */
-
 ?>
 
+<!--This is the form used for the update. Data is taken in from values in the populate_form function -->
     <form method="get" action = "#">
     Corporation: <input type="text" id="corp" name = "corp" value="<?php echo $corp;?>" />
     <br />

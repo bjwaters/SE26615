@@ -1,10 +1,10 @@
 <?php
 /**
-Benjamin Waters
- * SE266
- * Assignment2
+ *Intro on index page
  */
-
+//Code for the updating of a specific entry
+//The page automatically shows the entry for a given id
+//And the save button calls the update function
 include_once("Assets/corpConnection.php");
 include_once("assets/corporation.php");
 include_once("assets/header.php");
@@ -15,7 +15,6 @@ $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT) ?? "";
 $record = populate_form($db, $id);
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING) ?? "";
-
 
 $corp = filter_input(INPUT_GET, 'corp', FILTER_SANITIZE_STRING);
 $incorp_dt = filter_input(INPUT_GET, 'incorp_dt', FILTER_SANITIZE_STRING);
@@ -29,7 +28,7 @@ $phone = filter_input(INPUT_GET, 'phone', FILTER_SANITIZE_STRING);
 switch ($action) {
     case "Save":
         $result = update_record($db, $id, $corp, $incorp_dt, $email, $zipcode, $owner, $phone);
-        echo($result . "entries added.");
+        echo($result . " row updated.");
         break;
     }
 include_once("assets/footer.php");

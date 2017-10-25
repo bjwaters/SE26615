@@ -1,12 +1,10 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: 001427082
- * Date: 10/23/2017
- * Time: 11:57 AM
+ *Intro on index page
  */
 
-
+//The code for adding a record to the database
+//Called from the create.php page
 function addRecord($db, $corp, $email, $owner, $phone, $zipcode){
 
     try{
@@ -25,6 +23,7 @@ function addRecord($db, $corp, $email, $owner, $phone, $zipcode){
 }
 
 
+//The code for grabbing a single record
 function get_record($db, $id) {
 
     try
@@ -42,15 +41,13 @@ function get_record($db, $id) {
             $table = "<table>" . PHP_EOL;
             $table .="<tr>";
             $table .= "<td> <b>Company: </b>" . $corporation['corp'] . "</td>";
-            //$table .= "<td> <b>Incorporated </b>" . $corporation['incorp_dt'] . "</td>";
             $table .= "<td> <b>Incorporated </b>" . $properDate . "</td>";
             $table .= "<td> <b>Email</b> " . $corporation['email'] . "</td>";
             $table .= "<td> <b>Zip</b> " . $corporation['zipcode'] . "</td>";
             $table .= "<td> <b>Owner</b> " . $corporation['owner'] . "</td>";
             $table .= "<td> <b>Phone</b> " . $corporation['phone'] . "</td>";
-            // $table .= "</td><td>" . "<a href=Read.php?action=Read&id=" . $acorp['id'] . ">Read</a>";
             $table .= "<td>" . "<a href=Update.php?action=Update&id=" . $corporation['id'] . ">Update</a>" . "</td>";
-            $table .= "<td>" . "<a href=index.php?action=Delete&id=" . $corporation['id'] . ">Delete</a>" . "</td>";
+            $table .= "<td>" . "<a href=Delete.php?action=Delete&id=" . $corporation['id'] . ">Delete</a>" . "</td>";
             $table .= "<td>" . "<a href=index.php?action=View>View</a>" . "</td>";
             $table .= "</tr></table>";
         }
@@ -67,7 +64,7 @@ function get_record($db, $id) {
 
 }
 
-
+//This code deletes a specific record from the database
 function delete_record($db, $id) {
 
     try {
@@ -81,6 +78,8 @@ function delete_record($db, $id) {
     }
 }
 
+//Called at the index page. It gives a full list of all companies and links
+//to further pages
 function getCorportations($db){
 
     try {
@@ -95,7 +94,7 @@ function getCorportations($db){
                 $table .= "<tr><td>" . $acorp['corp'];
                 $table .= "</td><td>" . "<a href=Read.php?action=Read&id=" . $acorp['id'] . ">Read</a>";
                 $table .= "</td><td>" . "<a href=Update.php?action=Update&id=" . $acorp['id'] .">Update</a>";
-                $table .= "</td><td>" . "<a href=index.php?action=Delete&id=" . $acorp['id'] .">Delete</a>";
+                $table .= "</td><td>" . "<a href=Delete.php?action=Delete&id=" . $acorp['id'] .">Delete</a>";
                 $table .= "</td></tr>";
             }
             $table .= "</table>" . PHP_EOL;
@@ -112,18 +111,8 @@ function getCorportations($db){
     }
 }
 
+//This code is responsible for updating a given record
 function update_record($db, $id,  $corp, $incorp_dt,  $email, $owner, $phone, $zipcode){
-
-
-
-    var_dump($id);
-    var_dump($corp);
-    var_dump($incorp_dt);
-    var_dump($email);
-    var_dump($owner);
-    var_dump($phone);
-    var_dump($zipcode);
-
 
         try{
             $sql = $db->prepare("UPDATE corps SET corp=:corp, incorp_dt=:incorp_dt, email=:email, owner=:owner, phone=:phone, zipcode=:zipcode WHERE id=:id");
@@ -142,6 +131,7 @@ function update_record($db, $id,  $corp, $incorp_dt,  $email, $owner, $phone, $z
         }
 }
 
+//This code is responsible for adding data to the update form
 function populate_form($db, $id){
 
     $sql = $db->prepare("SELECT * FROM corps where id=:id");

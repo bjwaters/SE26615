@@ -1,10 +1,9 @@
 <?php
 /**
-Benjamin Waters
- * SE266
- * Assignment2
+ *Intro on index page
  */
 
+//This code is responsible for reading a single entry
 
 include_once("assets/corpConnection.php");
 require_once("assets/corporation.php");

@@ -1,12 +1,10 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: 001427082
- * Date: 10/23/2017
- * Time: 12:54 PM
+ *Intro on index page
  */
 ?>
 
+<!--This is the code for an empty form, used when adding an entry. -->
 <form method="post" action="#">
     <table>
         <tr><td>Corporation Name:</td><td> <input type="text" name="corp" /></td></tr>

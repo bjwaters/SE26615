@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: 001427082
- * Date: 10/24/2017
- * Time: 4:02 PM
+ *Intro on index page
  */
 include_once ("assets/header.php");
 include_once("assets/corpConnection.php");

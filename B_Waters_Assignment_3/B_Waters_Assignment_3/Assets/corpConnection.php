@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: 001427082
- * Date: 10/23/2017
- * Time: 11:53 AM
+ *Intro on index page
  */
 function corpConn()
 {
