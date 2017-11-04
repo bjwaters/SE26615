@@ -70,14 +70,16 @@ switch($action){
     case 'sorting':
         $result = sort_list($db);
         $cols = getColumnNames($db, 'corps');
-        echo query_form($cols);
+        include_once('assets/sort_page.php');
+        include_once('assets/search_page.php');
         echo $result;
         break;
     //This is what is called when a text string is searched
     case 'searching':
         $result = search_list($db);
         $cols = getColumnNames($db, 'corps');
-        echo query_form($cols);
+        include_once('assets/sort_page.php');
+        include_once('assets/search_page.php');
         echo $result;
         break;
     case 'Reset':
@@ -86,7 +88,8 @@ switch($action){
         //Getting the column names
         $cols = getColumnNames($db, 'corps');
         //Showing the query form for searches
-        echo query_form($cols);
+        include_once('assets/sort_page.php');
+        include_once('assets/search_page.php');
         //Showing the Corporation list default
         echo get_Corporations($db);
         break;
@@ -97,7 +100,8 @@ switch($action){
         //Getting the column names
         $cols = getColumnNames($db, 'corps');
         //Showing the query form for searches
-        echo query_form($cols);
+        include_once('assets/sort_page.php');
+        include_once('assets/search_page.php');
         //Showing the Corporation list default
         echo get_Corporations($db);
         break;

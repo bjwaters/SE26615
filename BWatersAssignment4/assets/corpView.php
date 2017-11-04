@@ -77,6 +77,7 @@ function read_corp($db, $id) {
     }
 }
 
+/*
 //Gives a form for the search criteria
 function query_form($cols)
 {
@@ -110,6 +111,7 @@ function query_form($cols)
     $form .= "</form></section><br>";
     return $form;
 }
+*/
 
 //This code is responsible for adding data to the update form
 function populate_form($db, $id){
