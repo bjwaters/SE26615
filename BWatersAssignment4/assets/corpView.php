@@ -150,7 +150,9 @@ function sort_list($db){
         $sql->execute();
         $corporation = $sql->fetchAll(PDO::FETCH_ASSOC);
         if ($sql->rowCount() > 0) {
-            $table = "<table>" . PHP_EOL;
+            $size = $sql ->rowCount();
+            $table = "$size rows returned. <br> <br>";
+            $table .= "<table>" . PHP_EOL;
             foreach ($corporation as $acorp) {
                 $table .= "<tr><td>" . $acorp['corp'];
                 $table .= "</td><td>" . "<a href=index.php?action=read&id=" . $acorp['id'] . ">Read</a>";
@@ -182,7 +184,9 @@ function search_list($db){
         $corporation = $sql->fetchAll(PDO::FETCH_ASSOC);
         if($sql->rowCount() > 0)
         {
-            $table = "<table>" . PHP_EOL;
+            $size = $sql ->rowCount();
+            $table = "$size rows returned. <br> <br>";
+            $table .= "<table>" . PHP_EOL;
             foreach ($corporation as $acorp)
             {
                 $table .= "<tr><td>" . $acorp['corp'];
