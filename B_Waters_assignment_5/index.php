@@ -51,6 +51,7 @@ switch($action) {
         include_once('assets/SiteLookup.php');
         break;
 
+    //Default setup at start
     default:
         include_once('assets/standardForm.php');
         break;
