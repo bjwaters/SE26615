@@ -6,13 +6,15 @@
  * Time: 1:49 PM
  */
 
-///Add function
+//Add function.
+//This validates the user input data as a proper url, and adds it if conditions are met
+// Otherwise, an error is returned.
 function add_site( $db, $url)
 {
     $valid = false;
     $already_input = false;
 
-    //Validation here
+    //Validation here. Is it a proper url?
     if (filter_var($url, FILTER_VALIDATE_URL)) {
         $valid = true;
         echo("$url is a valid URL" . "<br>");
@@ -40,11 +42,13 @@ function add_site( $db, $url)
         echo("<br>Error. Invalid url.");
     }
 
+    //If the entered url is a duplicate of a stored url, give an error.
     if($already_input == true)
     {
         echo("<br> Error. Site already stored. Please input another.");
     }
-    //If it is valid and it hasn't been input
+
+    //If the url is valid and it hasn't been input before
     if ($already_input == false && $valid == true) {
         $expression = "/(https?:\/\/[\da-z\.-]+\.[a-z\.]{2,6}[\/\w \.-]+)/";
         $file = file_get_contents("$url");
@@ -54,6 +58,8 @@ function add_site( $db, $url)
         //Then removes duplicates
         $noDuplicates = array_unique($matches[0]);
 
+        //Continue if the url returns a proper array of links. If the site doesn't
+        //allow this, it is not entered to the database
         if(count($noDuplicates) > 0) {
             try {
                 $sql = "INSERT INTO sites VALUES (null, :site, NOW())";
@@ -70,7 +76,7 @@ function add_site( $db, $url)
                     $stmt->bindparam(':link', $var);
                     $stmt->execute();
                 }
-
+                echo("Success!<br>");
                 return $siteid;
 
             } catch (PDOException $e) {
@@ -87,7 +93,7 @@ function add_site( $db, $url)
 }
 
 
-//Gets a list of the stored websites
+//Gets a list of the stored websites for the lookup page
 function get_sites($db)
 {
     try {
@@ -102,7 +108,8 @@ function get_sites($db)
     }
 }
 
-//Grabbing the data of the selected site from the dropdown list, and its links
+//Grabbing the data of a site given the id of a dropdown option
+//This displays the site and the time it was input
 function get_site_data($db, $link_list){
     $id = $_POST['siteDrop'];
 
@@ -134,7 +141,7 @@ function get_site_data($db, $link_list){
 }
 
 
-//Grabbing the links for a given site id
+//Grabbing the links for a given site id (from the dropdown) and putting them in an array
 function get_links($db, $id)
 {
 
@@ -158,7 +165,7 @@ function get_links($db, $id)
     }
 }
 
-//Making a table with the links to a given site
+//Building a table with the array of links to a given site
 function buildTable($link_list)
 {
     $table = "<section><table>" . PHP_EOL;

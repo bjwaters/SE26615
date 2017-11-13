@@ -24,7 +24,8 @@ $url = "";
 switch($action) {
 
     //Checks if the site is valid
-    // It it is, and add function is called and a table with the added links in the site is displayed
+    // If it is, and it allows links to be captured, the site and links are stored in appropriate tables
+    // Html tables with the added site and it's links are displayed
     //Gives an error message if not
     case 'Add':
         $url = $_POST['url_entry'];
