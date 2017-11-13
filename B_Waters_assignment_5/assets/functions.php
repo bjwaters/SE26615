@@ -6,11 +6,6 @@
  * Time: 1:49 PM
  */
 
-//Checks if there is a valid url in the text box
-//Text is the input method
-//The url is validated here
-
-
 ///Add function
 function add_site( $db, $url)
 {
