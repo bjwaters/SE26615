@@ -59,26 +59,32 @@ function add_site( $db, $url)
         //Then removes duplicates
         $noDuplicates = array_unique($matches[0]);
 
-        try {
-            $sql = "INSERT INTO sites VALUES (null, :site, NOW())";
-            $stmt = $db->prepare($sql);
-            $stmt->bindparam(':site', $url);
+        if(count($noDuplicates) > 0) {
+            try {
+                $sql = "INSERT INTO sites VALUES (null, :site, NOW())";
+                $stmt = $db->prepare($sql);
+                $stmt->bindparam(':site', $url);
 
-            $stmt->execute();
-            $siteid = $db->lastInsertId();
-
-            $stmt = $db->prepare("INSERT INTO sitelinks VALUES(:site_id, :link)");
-
-            foreach ($noDuplicates as $var) {
-                $stmt->bindparam(':site_id', $siteid);
-                $stmt->bindparam(':link', $var);
                 $stmt->execute();
+                $siteid = $db->lastInsertId();
+
+                $stmt = $db->prepare("INSERT INTO sitelinks VALUES(:site_id, :link)");
+
+                foreach ($noDuplicates as $var) {
+                    $stmt->bindparam(':site_id', $siteid);
+                    $stmt->bindparam(':link', $var);
+                    $stmt->execute();
+                }
+
+                return $siteid;
+
+            } catch (PDOException $e) {
+                die("Adding did not work.");
             }
-
-            return $siteid;
-
-        } catch (PDOException $e) {
-            die("Adding did not work.");
+        }
+        else
+        {
+            echo("No links in array, nothing added.");
         }
     } else {
         echo("<br>Nothing new added.");
