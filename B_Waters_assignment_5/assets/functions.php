@@ -104,6 +104,7 @@ function get_sites($db)
 //Grabbing the data of the selected site from the dropdown list, and its links
 function get_site_data($db, $link_list){
     $id = $_POST['siteDrop'];
+
     try
     {
         $sql ="SELECT site, date FROM sites WHERE site_id=$id";
@@ -114,9 +115,9 @@ function get_site_data($db, $link_list){
         {
             $site = $stmt -> fetch(PDO::FETCH_ASSOC);
             $site_table = "<section><table>" . PHP_EOL;
-            $site["date"] = date("m/d/Y");
             $site_table .= "<tr><td>Site: " . $site["site"] . "</td>";
-            $site_table .= "<td>Date: " . $site["date"] . "</td></tr>";
+            //Properly formatting the date
+            $site_table .= "<td>Date: " . date("d-m-Y", strtotime($site['date'])) . "</td></tr>";
             $site_table .= count($link_list) . " links found.";
 
             $site_table .= "</table></section><br>" . PHP_EOL;
