@@ -31,7 +31,6 @@ switch($action) {
     //Adds a new category, if valid
     case 'Add Category':
         add_category($db);
-        read_category($db);
         include_once("Admin/categoryAddForm.php");
         echo "Category Added";
         break;

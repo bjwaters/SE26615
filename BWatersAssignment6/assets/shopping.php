@@ -88,7 +88,7 @@ function show_cart($db, $id)
     $listing = array_unique($result);
 
     $table = "<table>";
-    $table .= "<thead><th>Product ID</th><th>Product</th><th>Price</th><th>Picture</th></thead>";
+    $table .= "<thead><th>ID</th><th>Product</th><th>Price</th><th>Picture</th></thead>";
     $table .= "<tbody>";
     foreach ($listing as $list) {
         $table .= "<tr>";

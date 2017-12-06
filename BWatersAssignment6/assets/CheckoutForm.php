@@ -22,8 +22,9 @@
                 echo("Nothing added, sorry.")
             ?>
 
-            <br> <input type = "submit" name = "action" value = "Total" />
+            <form method = 'get' action = "#">
             <br><br><input type = "submit" name = "action" value = "Back to Shopping Page" />
+            </form>
 
         </div>
     </div>

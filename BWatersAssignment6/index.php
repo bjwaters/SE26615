@@ -66,6 +66,7 @@ switch($action){
         include_once('assets/ShoppingForm.php');
         break;
     case 'AddToCart':
+
         array_push($_SESSION['cart_array'], $id);
 
         $category_list = get_category($db);
@@ -142,6 +143,7 @@ switch($action){
         $user_found = find_user($db);
         passwordTest($db, $user_found);
         break;
+    //Logs off the user from admin
     case 'Logoff':
         Login_stop();
         include_once('assets/StartPage.php');
