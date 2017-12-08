@@ -30,7 +30,11 @@ switch($action){
 
     //Go to shopping page
     case 'Shopping Page':
-        $_SESSION['cart_array'] = array();
+
+        $_SESSION['cart'] =  array();
+        $_SESSION['counter'] = 0;
+        ShoppingSession($db);
+
         $category_list = get_category($db);
         include_once("assets/ShoppingForm.php");
         break;
@@ -41,8 +45,6 @@ switch($action){
     case 'Back to Shopping Page':
         $category_list = get_category($db);
         include_once("assets/ShoppingForm.php");
-        break;
-    case 'Total':
         break;
 
     //This is a series of back buttons to earlier parts of the program
@@ -66,15 +68,18 @@ switch($action){
         include_once('assets/ShoppingForm.php');
         break;
     case 'AddToCart':
-
-        array_push($_SESSION['cart_array'], $id);
-
+        addToCart($id);
+        $_SESSION['counter']++;
         $category_list = get_category($db);
         include_once('assets/ShoppingForm.php');
         break;
     case 'Shopping Cart':
-
         include_once('assets/CheckoutForm.php');
+        break;
+    case 'Clear Cart':
+        clearCart();
+        $category_list = get_category($db);
+        include_once("assets/ShoppingForm.php");
         break;
 
     //The following options are sent to adminindex, which has a check for a session at the top

@@ -11,17 +11,11 @@
 <div class="container">
     <div class ="row">
         <div class ="col-md-3">
-        <h2>Checkout Page</h2>
+        <h3>Checkout results</h3>
+            <h4> (Scroll down for longer checkouts)</h4>
             <br>
 
-            <?php
-            if (count($_SESSION['cart_array'])) {
-                echo show_cart($db, $id);
-            }
-            else
-                echo("Nothing added, sorry.")
-            ?>
-
+            <?php echo printTotal($db)?>
             <form method = 'get' action = "#">
             <br><br><input type = "submit" name = "action" value = "Back to Shopping Page" />
             </form>

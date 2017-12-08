@@ -6,106 +6,6 @@
  * Time: 12:04 PM
  */
 
-/*
-function product_picture()
-{
-    $message = "";
-    $name = $_FILES['file']['name'];
-    $tmp_name = $_FILES['file']['tmp_name'];
-
-    echo("In the product picture function<br>");
-
-    if(isset($name))
-    {
-        if(!empty($name))
-        {
-            $location = 'Uploads/';
-            move_uploaded_file($tmp_name, $location.$name);
-            $message = "Uploaded";
-        }
-        else
-        {
-            $message =  "Not Uploaded";
-        }
-    }
-    return $message;
-}
-*/
-
-//This function checks if there are duplicate entries to add, and if not, adds a product
-function add_product($db)
-{
-    $productName = $_POST['product_entry'];
-
-    //If the text box isn't empty
-    if($productName != "") {
-
-        $alreadyUsed = false;
-
-        try {
-            $stmt = $db->prepare("SELECT * FROM products");
-
-
-            if ($stmt->execute() && $stmt->rowCount() > 0) {
-                $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($products as $product) {
-                    if ($product['product'] == $productName) {
-                        $alreadyUsed = true;
-                    }
-                }
-            }
-        } catch (PDOException $e) {
-            die("Error. Could not access the category table.");
-        }
-
-
-        //File area
-        $name = $_FILES['file']['name'];
-        $tmp_name = $_FILES['file']['tmp_name'];
-
-        if(isset($name))
-        {
-            if(!empty($name))
-            {
-                $location = 'Uploads/';
-                move_uploaded_file($tmp_name, $location.$name);
-            }
-        }
-
-        if(!empty($name)) {
-            //Grabbing the date from the product form
-            $id = $_POST['category_drop'];
-            $name = $_POST['product_entry'];
-            $price = $_POST['product_price'];
-            $image = $_FILES['file']['name'];
-
-            //If the text box contains something that isn't in the table
-            //And the dropdown has something selected
-            if ($alreadyUsed == false && $id != null) {
-                if (filter_var($price, FILTER_VALIDATE_FLOAT)) {
-                    try {
-                        $stmt = $db->prepare("INSERT INTO products VALUES (null, :category_id, :product, :price, :image)");
-                        $stmt->bindParam(':category_id', $id);
-                        $stmt->bindParam(':product', $name);
-                        $stmt->bindParam(':price', $price);
-                        $stmt->bindParam(':image', $image);
-                        $stmt->execute();
-                        echo "Product entry valid.";
-                    } catch (PDOException $e) {
-                        die("<br>Adding a product did not work. No category entered.");
-                    }
-                } else {
-                    echo("Invalid price. Please enter a proper number.");
-                }
-            } else {
-                echo("Error. Product already exists, or no category entered. Please look over your data.");
-            }
-        }
-        else
-            die ("No file selected at add");
-    }
-}
-
 function remove_product($db, $id)
 {
 
@@ -198,14 +98,104 @@ function get_a_product($db, $id){
     }
 }
 
+//This function checks if there are duplicate entries to add, and if not, adds a product
+function add_product($db)
+{
+    $productName = $_POST['product_entry'];
+
+    //If the text box isn't empty
+    if($productName != "") {
+
+        $alreadyUsed = false;
+
+        try {
+            $stmt = $db->prepare("SELECT * FROM products");
+
+
+            if ($stmt->execute() && $stmt->rowCount() > 0) {
+                $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($products as $product) {
+                    if ($product['product'] == $productName) {
+                        $alreadyUsed = true;
+                    }
+                }
+            }
+        } catch (PDOException $e) {
+            die("Error. Could not access the category table.");
+        }
+
+
+        //File area
+        $name = $_FILES['file']['name'];
+        $tmp_name = $_FILES['file']['tmp_name'];
+
+        if(isset($name))
+        {
+            if(!empty($name))
+            {
+                $location = 'Uploads/';
+                move_uploaded_file($tmp_name, $location.$name);
+            }
+        }
+
+        if(!empty($name)) {
+            //Grabbing the date from the product form
+            $id = $_POST['category_drop'];
+            $name = $_POST['product_entry'];
+            $price = $_POST['product_price'];
+            $image = $_FILES['file']['name'];
+
+            //If the text box contains something that isn't in the table
+            //And the dropdown has something selected
+            if ($alreadyUsed == false && $id != null) {
+                if (filter_var($price, FILTER_VALIDATE_FLOAT)) {
+                    try {
+                        $stmt = $db->prepare("INSERT INTO products VALUES (null, :category_id, :product, :price, :image)");
+                        $stmt->bindParam(':category_id', $id);
+                        $stmt->bindParam(':product', $name);
+                        $stmt->bindParam(':price', $price);
+                        $stmt->bindParam(':image', $image);
+                        $stmt->execute();
+                        echo "Product entry valid.";
+                    } catch (PDOException $e) {
+                        die("<br>Adding a product did not work. No category entered.");
+                    }
+                } else {
+                    echo("Invalid price. Please enter a proper number.");
+                }
+            } else {
+                echo("Error. Product already exists, or no category entered. Please look over your data.");
+            }
+        }
+        else
+            die ("No file selected at add");
+    }
+}
+
 //Updating an entry in the product database
 function update_product($db){
 
     $category_id = $_POST['category_drop'];
     $product = $_POST['product_entry'];
     $price = $_POST['product_price'];
-    $image = $_POST['product_image'];
     $product_id = $_POST['product_index'];
+
+    $name = $_FILES['file']['name'];
+    $tmp_name = $_FILES['file']['tmp_name'];
+
+    if(isset($name))
+    {
+        if(!empty($name))
+        {
+            $location = 'Uploads/';
+            move_uploaded_file($tmp_name, $location.$name);
+            $image = $_FILES['file']['name'];
+        }
+    }
+    else
+    {
+        $image = $_POST['product_image'];
+    }
 
     if(filter_var($price, FILTER_VALIDATE_FLOAT)) {
         try {

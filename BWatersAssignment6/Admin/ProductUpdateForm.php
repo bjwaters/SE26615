@@ -11,7 +11,7 @@
         <div class ="col-md-6">
             <h3>Product Updates</h3>
             <section>
-                <form method = 'post' action = "#">
+                <form method = 'post' action = "#"enctype = "multipart/form-data">
                     <br>
                     Product Name: <input type="text" name="product_entry" value="<?php echo $product_name;?>" /><br>
                     Product Category:
@@ -30,7 +30,8 @@
                     </select>
 
                     <br> Product Price: <input type="text" name="product_price" value="<?php echo $product_price;?>" />
-                    <br> Product Image: <input type="text" name="product_image" value="<?php echo $product_image;?>" />
+                    <br>Image file: <input type = 'file' name = 'file'> <br>
+                    <input type="hidden" name="product_image" value="<?php echo $product_image;?>" />
                     <br> <input type="hidden" name="product_index" value="<?php echo $product_id;?>" />
                     <br><input type = "submit" name = "action" value = "Edit Product" />
                     <br><input type = "submit" name = "action" value = "Manage Products" />
