@@ -76,7 +76,6 @@ switch($action) {
     //Updates the product form
     case 'Edit Product':
         $result = update_product($db);
-        read_products($db);
         $categories = get_category($db);
         include_once("Admin/productEntryForm.php");
         break;

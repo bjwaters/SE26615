@@ -27,10 +27,11 @@
 
                     <input type = "submit" name = "action" value = "Submit" /><br><br>
                     <?php
-                        echo count($_SESSION['cart_array']) . " Items added." ?>
+                        echo $_SESSION['counter'] . " Items added." ?>
                     <br><br>
                     <input type = "submit" name = "action" value = "Shopping Cart" />
                     <input type = "submit" name = "action" value = "Logoff" />
+                    <br> <input type = "submit" name = "action" value = "Clear Cart" />
                 </form>
             </section>
         </div>
